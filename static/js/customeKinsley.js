@@ -18,7 +18,63 @@
 
 
 /*-------------------------------------------------------------------------------------------------------------------------*/
+$("#submitResponse1").click(function(){
 
+	let responseAnswer1TextArea = $("#responseAnswer1").val().trim();
+	if(responseAnswer1TextArea == ''){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'No answers has been put !!',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 0 && responseAnswer1TextArea.length < 3 ){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'Please put an anser that has greater than 3 characters in size',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 4){
+		showDialog();
+		$.ajax({
+					data: {
+						posTResponse: responseAnswer1TextArea,
+						posTQuestion_number: "2"
+					},
+					type: 'POST',
+					url: '/getAnswer'
+				}).done(function(response){
+					hideDialog();
+					
+					if(response.response == "mark_score"){
+								BootstrapDialog.alert({
+									title: 'System Score ',
+									message: 'You have scored ' + response.score + "\n Will be saved to the database later !!",
+									type: BootstrapDialog.TYPE_WARNING, 
+									closable: true, 
+									draggable: true,
+									buttonLabel: 'Close',
+									callback: function(result) {
+										// no call back yet kinsley !!!
+										
+									}
+								});
+							}
+				});
+	}
+
+});
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
 $("#BtnCreatAccount").click(function() {

@@ -115,8 +115,13 @@ class ConnectClass(object):
 		except Exception as e:
 			return "error"
 		
-	def logOutUser(self):
-		pass
+	def getStudentResults(self , student ):
+		try:
+			sql = self.cursor.execute( "SELECT * FROM " + cons.ANSWER_TABLE + " WHERE " + cons.COL_ANSWER_BY_USER + " = '" + student + "'" )
+			sql_ = self.cursor.fetchall()
+			return sql_
+		except Exception as e:
+			return "error"+ str(e)
 
 	def saveQuestion(self):
 		pass

@@ -6,8 +6,15 @@ from flask.ext.login import LoginManager, login_user, logout_user, current_user,
 from functools import wraps
 import DBMsql as conx
 import re
+import numpy as np
+import pandas as pd
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.ensemble import RandomForestClassifier
 import os
+import plainUtil as utils
 from flask.ext.bcrypt import Bcrypt
+import logging
 
 
 
@@ -18,21 +25,40 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 bcrypt = Bcrypt(app)
 db=conx.ConnectClass(bcrypt)
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
+# create a file handler
+handler = logging.FileHandler('hello.log')
+handler.setLevel(logging.INFO)
 
+# create a logging format
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+
+# add the handlers to the logger
+logger.addHandler(handler)
+
+ 
 #algorithm for Short Response scoring aka AlSScore
+# 'true' if True else 'false'
 
 @app.route("/")
 def index():
 	# This the index page
-	if "username" in session and "userType" == session:
-		if session['userType'] == "Student":
-			redirect(url_for("/student/"))
-		else:
-			redirect(url_for("/teacher/"))
+	# if session.get('username') == True :
+	# 	if session['userType'] == "Student":
+	# 		return redirect(url_for("/student/"))
+	# 	else:
+	# 		return redirect(url_for("/teacher/"))
+	session['username'] = "kinsley@memail.com"
+	
+	result_set = db.getStudentResults( session['username'] )
+
+	result_set = "empty" if len(result_set) == 0 else result_set
 
 
-	return render_template("login.html")
+	return render_template("studentResults.html" , result_set = result_set )
 
 
 @app.route("/teacher/")
@@ -54,7 +80,17 @@ def res_not_found(e):
 
 @app.route("/saveAnswerResponseAjax")
 def saveAnswerResponse():
-	db.SaveAnswerResponse('put the arguments in this )
+	# db.SaveAnswerResponse('put the arguments in this ')
+	pass
+
+
+@app.route("/studentResults/")
+def studentResults():
+	# db.SaveAnswerResponse('put the arguments in this ')
+	result_set = db.getStudentResults( session['username'] )
+
+	return render_template( "studentResults.html" , result_set )
+
 
 @app.route("/logout/")
 @login_required
@@ -117,6 +153,20 @@ def registerAjax():
 		'user' : userType 
 		})
 
+@app.route("/getAnswer",methods=['POST'])
+def getAnswerAjax():
+	question_number = request.form['posTQuestion_number']
+	student_response = request.form['posTResponse']
+	response_score = 0
+	#vectorizer = CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None,stop_words = None, max_features = 5000)
+	#test_data_features = vectorizer.transform([student_response])
+	#np.asarray(test_data_features)
+	#model_pickle = utils.openClassierr("model0001")
+	#result = model_pickle.predict(test_data_features)
+	#response_score = result
+	return jsonify({'response':'mark_score' , 'score':response_score})
+
+
 @app.before_request
 def before_request():
     # When you import jinja2 macros, they get cached which is annoying for local
@@ -128,11 +178,9 @@ def before_request():
 if __name__ == '__main__':
 	app.jinja_env.auto_reload = True
 	app.config['TEMPLATES_AUTO_RELOAD'] = True
-	app.run(debug=True, host='127.0.0.1')
-	# r=db.registerTeacherUser("1kajivakinsley@gmail.com", "qwerty")
-	# print(r)
-	# s=db.loginTeacherUser("1kajivakinsley@gmail.com", "qwerty")
-	# print("xxxx :: "+s)
+	app.run(debug=True, host='127.0.0.2')
+	
+	
 	
 	
 
