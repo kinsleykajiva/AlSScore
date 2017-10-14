@@ -5,6 +5,7 @@ from passlib.hash import sha256_crypt
 # from  constantsSettongs import *
 import constantsSettongs as cons
 from flask.ext.bcrypt import Bcrypt
+import plainUtil as utils
 
 
 
@@ -12,7 +13,7 @@ from flask.ext.bcrypt import Bcrypt
 
 class ConnectClass(object):
 	"""This class will handle all the database saving and reading operations"""
-	def __init__(self , crypt):
+	def __init__(self  , crypt = "" ):
 		self.crypt = crypt
 		self.db = pymysql.connect( host = cons.LOCALHOST , user = cons.USER , passwd = cons.PASSWORD , db=cons.DATABASE )
 		self.cursor=self.db.cursor()
@@ -113,9 +114,23 @@ class ConnectClass(object):
 			self.db.commit()
 			return "done"
 		except Exception as e:
-			return "error"
+			return "error" +str(e)
+	def saveAnswerRespondedModeled(self  , question , student_name  , response ,question_total ,  score_mark ,model_accuracy , model_file , algorithm_used ):
+		""" Will save the answer response data to database table<br>Will return done if successfull else error if failed to save"""	
+		turn = ""
+		try:
+			date__ = utils.getNowDate()	
+			st = "INSERT INTO " + cons.ANSWER_TABLE + " ( " + cons.COL_ANSWER_BY_USER + " , " + cons.COL_ANSWER_QUESTION + " , " + cons.COL_ANSWER_RESPONSE + " , " + cons.COL_ANSWER_QUESTION_TOTAL + " , " + cons.COL_ANSWER_MARK_AWARDED + " , " +	cons.COL_ANSWER_MODEL_ACCURACY + "  , " + cons.COL_ANSWER_MODEL_NAME + " , " + cons.COL_ANSWER_DATE + " , "+cons.COL_ANSWER_ALGO+") VALUES ( '" + student_name + "' , '" + question + "' , '"+response+"' , '"+question_total+"' , '"+score_mark+"' , '"+model_accuracy+"' , '"+model_file+"' ,'"+date__+"' , '" + algorithm_used + "' ) " 	
+			query = self.cursor.execute( st  )
+			self.db.commit()
+			turn = "done"
+		except Exception as e:
+			turn = "error"+str(e)
+
+		return str(turn)
 		
 	def getStudentResults(self , student ):
+
 		try:
 			sql = self.cursor.execute( "SELECT * FROM " + cons.ANSWER_TABLE + " WHERE " + cons.COL_ANSWER_BY_USER + " = '" + student + "'" )
 			sql_ = self.cursor.fetchall()
@@ -145,8 +160,8 @@ class ConnectClass(object):
 
 		
 if __name__ == '__main__':
-	
-	print(cons.DATABASE)
+	xcon = ConnectClass()
+	print(xcon.saveAnswerRespondedModeled("qeust 1 " , "kinsley" , "qwdrqwewewqwq"  , "3" , "2" ,".3423" ,"model001" , "randomForest"))
 
 
 

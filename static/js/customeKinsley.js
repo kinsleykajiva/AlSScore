@@ -19,8 +19,11 @@
 
 /*-------------------------------------------------------------------------------------------------------------------------*/
 $("#submitResponse1").click(function(){
+	let selectAlgorithmType = getSelectedCheckBox();
+//		alert(selectAlgorithmType);
 
 	let responseAnswer1TextArea = $("#responseAnswer1").val().trim();
+	responseAnswer1TextArea = safe_tags_replace(responseAnswer1TextArea);
 	if(responseAnswer1TextArea == ''){
 		BootstrapDialog.alert({
 			title: 'Failed to submit ',
@@ -47,20 +50,23 @@ $("#submitResponse1").click(function(){
 	}
 	if( responseAnswer1TextArea.length > 4){
 		showDialog();
+
 		$.ajax({
 					data: {
-						posTResponse: responseAnswer1TextArea,
-						posTQuestion_number: "2"
+						posTResponse		: responseAnswer1TextArea,
+						posTQuestion_number	: "1",
+						postAlgorithmType	: selectAlgorithmType
 					},
 					type: 'POST',
 					url: '/getAnswer'
 				}).done(function(response){
-					hideDialog();
+					hideDialog();	
+					//alert(response.response);			
 					
-					if(response.response == "mark_score"){
+					if(response.response == "done"){
 								BootstrapDialog.alert({
 									title: 'System Score ',
-									message: 'You have scored ' + response.score + "\n Will be saved to the database later !!",
+									message: 'You have scored ' + response.score + "\n Model Accuracy :  " + response.accuracy,
 									type: BootstrapDialog.TYPE_WARNING, 
 									closable: true, 
 									draggable: true,
@@ -70,7 +76,21 @@ $("#submitResponse1").click(function(){
 										
 									}
 								});
-							}
+					}else{
+
+						BootstrapDialog.alert({
+									title: 'System Score Error',
+									message: "An Error Occured. Try again later ",
+									type: BootstrapDialog.TYPE_DANGER, 
+									closable: true, 
+									draggable: true,
+									buttonLabel: 'Close',
+									callback: function(result) {
+										// no call back yet kinsley !!!
+										
+									}
+								});
+					}
 				});
 	}
 
@@ -332,6 +352,11 @@ $("#BtnLogin").click(function() {
 
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
+function getSelectedCheckBox(){	
+	
+	return $("input[type='radio']:checked").val();
+	
+}
 
 /****************************************************************************/
 

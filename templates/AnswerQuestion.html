@@ -115,6 +115,29 @@
           <div class="page-title">
             <div class="title_left">
               <h3>Answer Expected <small>(Respond in less than 50 words)</small>.</h3>
+              <form class="form-horizontal form-label-left">
+                 <div class="form-group">
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                     <div class="radio">
+                            <label>
+                              <input type="radio" value ="rc" name="ch"  class="flat" checked="checked"/> RandomForestClassifier
+                            </label>
+                      </div>
+                      <div class="radio">
+                            <label>
+                              <input type="radio" value="dc" name="ch"  class="flat" /> DecisionTreeClassifier
+                            </label>
+                      </div>
+                      <div class="radio">
+                            <label>
+                              <input type="radio" value="kc" name="ch"  class="flat" /> KNeighborsClassifier
+                            </label>
+                      </div>
+
+                  </div>
+                  
+                </div>
+              </form>
             </div>
 
 
@@ -129,6 +152,7 @@
                   <p>
                     <b>
                       <big >Q 1.</big>&nbsp;&nbsp;
+                      <label id="questionNumber"></label>
                       <label>Describe two ways the student could have improved the experimental design and/or validity of the results</label>
                       <br>
                     </b>
@@ -145,7 +169,7 @@
                     <div class="form-group" >
                       <label for="responseAnswer" class="control-label col-md-3 col-sm-3 col-xs-12">Enter Response</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea id="responseAnswer1" class="form-control col-md-7 col-xs-12" type="text" name="responseAnswer" rows="2" cols="200">
+                        <textarea id="responseAnswer1" style="min-height: 200px;max-height: 300px; max-width: 500px;min-width: 120px;" class="form-control col-md-7 col-xs-12" type="text" name="responseAnswer" rows="2" cols="200">
                         </textarea>
                       </div>
                     </div>
@@ -156,7 +180,7 @@
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 
                         <button style="display: none;" class="btn btn-primary" type="reset">Reset</button>
-                        <button type="submit" id="submitResponse1" class="btn btn-success">Submit</button>
+                        <button type="submit" id="submitResponse1" class="btn btn-success">Submit Answer</button>
                       </div>
                     </div>
 

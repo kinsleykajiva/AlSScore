@@ -7,13 +7,13 @@ from sklearn.ensemble import RandomForestClassifier
 import plainUtil as utils
 import pandas as pd
 import numpy as np
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score ,f1_score, precision_score, recall_score, classification_report, confusion_matrix
 
 if __name__ == '__main__':
     train = pd.read_csv(os.path.join(os.path.dirname(__file__), 'datasets', 'train_rel_2_2.tsv'), header=0, delimiter="\t", quoting=3)
     test = pd.read_csv(os.path.join(os.path.dirname(__file__), 'datasets', 'test_rel_2_2.tsv'), header=0, delimiter="\t",  quoting=3 )
     train_22= pd.read_csv(os.path.join(os.path.dirname(__file__), 'datasets', 'assaignments1.csv') , header=5  )
-    print(train_22)
+    #print(train_22)
     
     
     # Initialize an empty list 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     # strings
     train_data_features = vectorizer.fit_transform(clean_train_reviews)
     print("\n")
-    print(vectorizer.get_feature_names())
+    #print(vectorizer.get_feature_names())
     
 
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     # sample test data after the train also can even call froma a  file of type tsv
     QUEST = ["to replicate the experiment you need to know how much vinegar to put in the containers there needs to be a control and you also need to know the shape of the objects because shape could have an effect on how much material gets dissolved"]
     wrongAnswer = ["Return a callable that handles preprocessing and tokenization"]
-    test_data_features = vectorizer.transform(wrongAnswer)
+    test_data_features = vectorizer.transform(QUEST)
     np.asarray(test_data_features)
 
     # Use the random forest to make label predictions
@@ -94,8 +94,11 @@ if __name__ == '__main__':
     print("Save score to database or file ... \n")
     utils.makep()
     print("Score:: ",result)
-    exit()
+    #exit()
     from sklearn.cross_validation import train_test_split
-    x_train , x_train , y_train , y_test = train_test_split(train , train ,random_state = 1)
-    print("accuracy ::: ", accuracy_score( y_test, result))
+    x_train , x_test , y_train , y_test = train_test_split(train , train ,random_state = 1)
+    print("accuracy ::: ", accuracy_score( train, result))
+    exit()
+    print("f1 score ::: ", f1_score( y_test, result))
+    print("precision_score ::: ", precision_score( y_test, result))
     

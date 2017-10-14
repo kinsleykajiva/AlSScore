@@ -139,26 +139,30 @@
 
                     <table class="table">
                       <thead>
-                        <tr>
-                          <th>#</th>
+                        <tr>                          
                           <th>Question #</th>
-                          <th>Mark</th>
-                          <th>Model Name(pickle name)</th>
+                          <th>Answer</th>
+                          <th>Scored</th>
+                          <th>Date</th>
+                          <th>Algorithm Used</th>
+                          <th>Model Accuracy</th>
+                          <th>Model Name</th>
                         </tr>
                       </thead>
                       <tbody>
+                        
+                        {% for result  in result_sets %}
                         <tr>
-                          <th scope="row">1</th>
-                          <td><label> {{ result_set }} </label></td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                          <td>{{ result }}</td>
+                          <td>{{ result.answer }}</td>
+                          <td>{{ result.mark_graded }}</td>
+                          <td>{{ result.date_ }}</td>
+                          <td>{{ result.algorithm }}</td>
+                          <td>{{ result.model_accuracy }}</td>
+                          <td>{{ result.model_name }}</td>
                         </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
+                        {% endfor %}
+
                         
                       </tbody>
                     </table>

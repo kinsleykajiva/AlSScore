@@ -21,11 +21,15 @@ COL_QUESTION_STOPWORDS = "stopwords"
 COL_QUESTION_PICKLE = "pickle_file"
 
 ANSWER_TABLE = "response"
-COL_ANSWER_NUMBER = "question_number"
+COL_ANSWER_QUESTION= "question"
 COL_ANSWER_RESPONSE = "answer"
+COL_ANSWER_QUESTION_TOTAL = "question_total"
 COL_ANSWER_MARK_AWARDED = "mark_graded"
-COL_ANSWER_MODEL_STATE = "model_state" 
+COL_ANSWER_MODEL_ACCURACY = "model_accuracy" 
 COL_ANSWER_BY_USER = "user_student"
+COL_ANSWER_MODEL_NAME = "model_name"
+COL_ANSWER_DATE = "date__"
+COL_ANSWER_ALGO = "algorithm"
 
 
 STUDENT_USERS_TABLE = "students"

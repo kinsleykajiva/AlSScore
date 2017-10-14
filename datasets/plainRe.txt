@@ -1,0 +1,21 @@
+Question,
+What is typically included in a class definition?,
+Answer,
+Data members (attributes) and member functions.,
+#################################################,
+
+Question,
+What is the difference between a data member and a local variable inside a member function?,
+Answer,
+Data members can be accessed from any member functions inside the class defintion. Local variables can only be accessed inside the member function that defines them.,
+###############################################################################################################,
+
+Question,
+What is the difference between a constructor and a function?,
+Answer,
+"A constructor is called whenever an object is created, whereas a function needs to be called explicitely. Constructors do not have return type, but functions have to indicate a return type",
+###############################################################################################################,
+
+
+
+

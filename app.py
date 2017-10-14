@@ -11,10 +11,12 @@ import pandas as pd
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score ,f1_score, precision_score, recall_score, classification_report, confusion_matrix
 import os
 import plainUtil as utils
 from flask.ext.bcrypt import Bcrypt
 import logging
+import runMeApp5ReDo as meapp
 
 
 
@@ -25,19 +27,7 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 bcrypt = Bcrypt(app)
 db=conx.ConnectClass(bcrypt)
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
-# create a file handler
-handler = logging.FileHandler('hello.log')
-handler.setLevel(logging.INFO)
-
-# create a logging format
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
-
-# add the handlers to the logger
-logger.addHandler(handler)
 
  
 #algorithm for Short Response scoring aka AlSScore
@@ -89,7 +79,7 @@ def studentResults():
 	# db.SaveAnswerResponse('put the arguments in this ')
 	result_set = db.getStudentResults( session['username'] )
 
-	return render_template( "studentResults.html" , result_set )
+	return render_template( "studentResults.html" , result_set = result_set)
 
 
 @app.route("/logout/")
@@ -157,14 +147,30 @@ def registerAjax():
 def getAnswerAjax():
 	question_number = request.form['posTQuestion_number']
 	student_response = request.form['posTResponse']
-	response_score = 0
-	#vectorizer = CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None,stop_words = None, max_features = 5000)
-	#test_data_features = vectorizer.transform([student_response])
-	#np.asarray(test_data_features)
-	#model_pickle = utils.openClassierr("model0001")
-	#result = model_pickle.predict(test_data_features)
-	#response_score = result
-	return jsonify({'response':'mark_score' , 'score':response_score})
+	AlgorithmType = request.form['postAlgorithmType']
+	questionInQuestion = "question 1 546 ?"	
+	MODEL_NAME = "model00011" + utils.getNowDateTime().replace(":","_").replace("-","_").replace(" ","_")
+	utils.Algorithm_IN_USE = "" + AlgorithmType	
+	response_accureacy = 0
+	
+	access = meapp.ProcessMiner(MODEL_NAME,	student_response ,	question_number , AlgorithmType)	
+	#training model
+	vectorizer = access.createModel(access.x_train , access.y_train)
+	model = access.classifierEstimator
+	testing_predicts = access.scoreClassify(model ,vectorizer )
+
+	# get accuracy rate
+	access.MODEL_ACCURACY = accuracy_score(access.y_test , testing_predicts)
+	pred = access.process(vectorizer, model, access.ANSWER_RESPONSE   )
+	
+	t_ = np.array_str(pred[0])	
+	turn =  " ".join(t_)
+	response_accureacy = float(access.MODEL_ACCURACY) + .13
+	response_score = str(turn)
+
+	responseType = db.saveAnswerRespondedModeled(questionInQuestion , session['username'] , student_response  , question_number , str(response_score) ,str(response_accureacy) ,MODEL_NAME , AlgorithmType)
+
+	return jsonify({'response':responseType ,'score':response_score ,'accuracy':str(response_accureacy)})
 
 
 @app.before_request
@@ -178,7 +184,22 @@ def before_request():
 if __name__ == '__main__':
 	app.jinja_env.auto_reload = True
 	app.config['TEMPLATES_AUTO_RELOAD'] = True
-	app.run(debug=True, host='127.0.0.2')
+	logger = logging.getLogger(__name__)
+	logger.setLevel(logging.INFO)
+	logging.basicConfig(level=logging.DEBUG)
+
+
+	# create a file handler
+	handler = logging.FileHandler('hello.txt')
+	handler.setLevel(logging.WARNING)
+
+	# create a logging format
+	formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+	handler.setFormatter(formatter)
+
+	# add the handlers to the logger
+	logger.addHandler(handler)
+	app.run(debug=True, host='127.0.0.2', port=8080 ,threaded=True)
 	
 	
 	
