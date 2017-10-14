@@ -134,9 +134,20 @@ class ConnectClass(object):
 		try:
 			sql = self.cursor.execute( "SELECT * FROM " + cons.ANSWER_TABLE + " WHERE " + cons.COL_ANSWER_BY_USER + " = '" + student + "'" )
 			sql_ = self.cursor.fetchall()
-			return sql_
+			row = ""
+			for qw in sql_:
+				row = " <tr>"
+				row += "<td> " + qw[2] + " </td>"
+				row += "<td> " + qw[3] + " </td>"
+				row += "<td> " + qw[5] + " </td>"
+				row += "<td> " + qw[8] + " </td>"
+				row += "<td> " + qw[9] + " </td>"
+				row += "<td> " + qw[6] + " </td>"
+				row += "<td> " + qw[7] + " </td>"
+				row += " </tr>"
+			return row
 		except Exception as e:
-			return "error"+ str(e)
+			return "error" + str(e)
 
 	def saveQuestion(self):
 		pass
@@ -161,7 +172,8 @@ class ConnectClass(object):
 		
 if __name__ == '__main__':
 	xcon = ConnectClass()
-	print(xcon.saveAnswerRespondedModeled("qeust 1 " , "kinsley" , "qwdrqwewewqwq"  , "3" , "2" ,".3423" ,"model001" , "randomForest"))
+	print(xcon.getStudentResults("kinsley@memail.com"))
+	#print(xcon.saveAnswerRespondedModeled("qeust 1 " , "kinsley" , "qwdrqwewewqwq"  , "3" , "2" ,".3423" ,"model001" , "randomForest"))
 
 
 
