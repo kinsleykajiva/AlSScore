@@ -168,7 +168,7 @@ def getAnswerAjax():
 	response_accureacy = float(access.MODEL_ACCURACY) + .13
 	response_score = str(turn)
 
-	responseType = db.saveAnswerRespondedModeled(questionInQuestion , session['username'] , student_response  , question_number , str(response_score) ,str(response_accureacy) ,MODEL_NAME , AlgorithmType)
+	responseType = db.saveAnswerRespondedModeled(question_number , session['username'] , student_response  , "unknown" , str(response_score) ,str(response_accureacy) ,MODEL_NAME , utils.processMeaning( AlgorithmType))
 
 	return jsonify({'response':responseType ,'score':response_score ,'accuracy':str(response_accureacy)})
 
@@ -199,7 +199,7 @@ if __name__ == '__main__':
 
 	# add the handlers to the logger
 	logger.addHandler(handler)
-	app.run(debug=True, host='127.0.0.2', port=8080 ,threaded=True)
+	app.run(debug=True, host='127.0.0.4', port=8080 ,threaded=True)
 	
 	
 	

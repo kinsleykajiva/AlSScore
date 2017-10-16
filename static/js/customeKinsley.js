@@ -16,45 +16,83 @@
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
 
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
 
 /*-------------------------------------------------------------------------------------------------------------------------*/
-$("#submitResponse1").click(function(){
-	let selectAlgorithmType = getSelectedCheckBox();
-//		alert(selectAlgorithmType);
 
-	let responseAnswer1TextArea = $("#responseAnswer1").val().trim();
-	responseAnswer1TextArea = safe_tags_replace(responseAnswer1TextArea);
-	if(responseAnswer1TextArea == ''){
-		BootstrapDialog.alert({
-			title: 'Failed to submit ',
-			message: 'No answers has been put !!',
-			type: BootstrapDialog.TYPE_WARNING, 
-			closable: true, 
-			draggable: true, 
-			buttonLabel: 'Ok'
-		});
 
-		return;
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+$("#getAnsFour").click(function(){
+	let  txtCopy = $("#ansFour").text();
+	alert("Copied " + txtCopy);
+});
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+$("#question_four_solution").click(function(){
+	let ansDiv = $("#question_four_solution_div");
+	if (ansDiv.is(":hidden")) {
+		ansDiv.slideDown("slow");
+		$(this).text("Close Sol");
+	}else{
+		ansDiv.slideUp("slow");
+		$(this).text("View Sol");
 	}
-	if( responseAnswer1TextArea.length > 0 && responseAnswer1TextArea.length < 3 ){
-		BootstrapDialog.alert({
-			title: 'Failed to submit ',
-			message: 'Please put an anser that has greater than 3 characters in size',
-			type: BootstrapDialog.TYPE_WARNING, 
-			closable: true, 
-			draggable: true, 
-			buttonLabel: 'Ok'
-		});
+});
+// tendai
 
-		return;
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+$("#question_three_solution").click(function(){
+	let ansDiv = $("#question_three_solution_div");
+	if (ansDiv.is(":hidden")) {
+		ansDiv.slideDown("slow");
+		$(this).text("Close Sol");
+	}else{
+		ansDiv.slideUp("slow");
+		$(this).text("View Sol");
 	}
-	if( responseAnswer1TextArea.length > 4){
-		showDialog();
+});
+/*-------------------------------------------------------------------------------------------------------------------------*/
+$("#question_two_solution").click(function(){
+	let ansDiv = $("#question_two_solution_div");
+	if (ansDiv.is(":hidden")) {
+		ansDiv.slideDown("slow");
+		$(this).text("Close Sol");
+	}else{
+		ansDiv.slideUp("slow");
+		$(this).text("View Sol");
+	}
+});
+
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+$("#question_one_solution").click(function(){
+	let ansDiv = $("#question_one_solution_div");
+	if (ansDiv.is(":hidden")) {		
+		ansDiv.slideDown("slow");
+		$(this).text("Close Sol");
+	}else{
+		ansDiv.slideUp("slow");
+		$(this).text("View Sol");
+	}
+});
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+
+function sendData(responseAnswer1TextArea , questionNumber_  ,selectAlgorithmType ){
+	showDialog();
 
 		$.ajax({
 					data: {
 						posTResponse		: responseAnswer1TextArea,
-						posTQuestion_number	: "1",
+						posTQuestion_number	: questionNumber_,
 						postAlgorithmType	: selectAlgorithmType
 					},
 					type: 'POST',
@@ -92,6 +130,164 @@ $("#submitResponse1").click(function(){
 								});
 					}
 				});
+
+}
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+$("#submitResponse4").click(function(){
+	let selectAlgorithmType = getSelectedCheckBox();
+	let responseAnswer1TextArea = $("#responseAnswer4").val().trim();
+
+	responseAnswer1TextArea = safe_tags_replace(responseAnswer1TextArea);
+	if(responseAnswer1TextArea == ''){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'No answers has been put !!',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 0 && responseAnswer1TextArea.length < 3 ){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'Please put an anser that has greater than 3 characters in size',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 4){
+		sendData(  responseAnswer1TextArea , "4" , selectAlgorithmType);		
+	}
+
+});
+
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+$("#submitResponse3").click(function(){
+	let selectAlgorithmType = getSelectedCheckBox();
+	let responseAnswer1TextArea = $("#responseAnswer3").val().trim();
+
+	responseAnswer1TextArea = safe_tags_replace(responseAnswer1TextArea);
+	if(responseAnswer1TextArea == ''){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'No answers has been put !!',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 0 && responseAnswer1TextArea.length < 3 ){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'Please put an anser that has greater than 3 characters in size',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 4){
+		sendData(  responseAnswer1TextArea , "3" , selectAlgorithmType);		
+	}
+
+});
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+
+$("#submitResponse2").click(function(){
+	let selectAlgorithmType = getSelectedCheckBox();
+	let responseAnswer1TextArea = $("#responseAnswer2").val().trim();
+
+	responseAnswer1TextArea = safe_tags_replace(responseAnswer1TextArea);
+	if(responseAnswer1TextArea == ''){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'No answers has been put !!',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 0 && responseAnswer1TextArea.length < 3 ){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'Please put an anser that has greater than 3 characters in size',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 4){
+		sendData(  responseAnswer1TextArea , "2" , selectAlgorithmType);		
+	}
+
+});
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+$("#submitResponse1").click(function(){
+	let selectAlgorithmType = getSelectedCheckBox();
+	let responseAnswer1TextArea = $("#responseAnswer1").val().trim();
+
+	responseAnswer1TextArea = safe_tags_replace(responseAnswer1TextArea);
+	if(responseAnswer1TextArea == ''){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'No answers has been put !!',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 0 && responseAnswer1TextArea.length < 3 ){
+		BootstrapDialog.alert({
+			title: 'Failed to submit ',
+			message: 'Please put an anser that has greater than 3 characters in size',
+			type: BootstrapDialog.TYPE_WARNING, 
+			closable: true, 
+			draggable: true, 
+			buttonLabel: 'Ok'
+		});
+
+		return;
+	}
+	if( responseAnswer1TextArea.length > 4){
+		sendData(  responseAnswer1TextArea , "1" , selectAlgorithmType);		
 	}
 
 });

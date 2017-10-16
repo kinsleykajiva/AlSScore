@@ -120,17 +120,17 @@
                   <div class="col-md-9 col-sm-9 col-xs-12">
                      <div class="radio">
                             <label>
-                              <input type="radio" value ="rc" name="ch"  class="flat" checked="checked"/> RandomForestClassifier
+                              <input type="radio" value ="rc" name="ch"  class="flat" checked="checked"/> Random Forest Sub-Algorithm
                             </label>
                       </div>
                       <div class="radio">
                             <label>
-                              <input type="radio" value="dc" name="ch"  class="flat" /> DecisionTreeClassifier
+                              <input type="radio" value="dc" name="ch"  class="flat" /> Decision Tree Sub-Algorithm
                             </label>
                       </div>
                       <div class="radio">
                             <label>
-                              <input type="radio" value="kc" name="ch"  class="flat" /> KNeighborsClassifier
+                              <input type="radio" value="kc" name="ch"  class="flat" /> KNeighbors Sub-Algorithm
                             </label>
                       </div>
 
@@ -153,7 +153,47 @@
                     <b>
                       <big >Q 1.</big>&nbsp;&nbsp;
                       <label id="questionNumber"></label>
-                      <label>Describe two ways the student could have improved the experimental design and/or validity of the results</label>
+                      <label>
+                      Describe two ways the student could have improved the experimental design and/or validity of the results</label>
+                      <br>
+                      <a href="javascript::void(0);" id="question_one_solution" style="text-decoration: underline;" >View Sol</a>
+                      <div id="question_one_solution_div" style="display: none;">
+                        <ul>
+                          <li>
+                            You need to know how much vinegar was used in each container
+                          </li>
+                          <li>
+                            You need to know what type of vinegar was used in each container.
+                          </li>
+                          <li>
+                            You need to know what materials to test.
+                          </li>
+                          <li>
+                            You need to know what size/surface area of materials should be used.
+                          </li>
+                          <li>
+                            You need to know how long each sample was rinsed in distilled water
+                          </li>
+                          <li>
+                            You need to know what drying method to use.
+
+                          </li>
+                          <li>
+                            You need to know what size/type of container to use
+                          </li>
+                          <li>
+                            
+                          </li>
+                        </ul>
+                        <br>
+                        <strong>Ans.</strong><br>
+                        <label id="ansOne">
+                         some additional information you will need are the material . you also need to know the size of the container to measure how the acid rain effected it . you need to know how much vinegar is used for each sample . another thing that would help is to know how big the sample stones are by measuring the best possible way </label>
+                         <br>
+                         <a href="javascript::void(0);" id="getAnsOne">Copy</a>
+                        
+                      </div>
+
                       <br>
                     </b>
                   </p>
@@ -194,7 +234,21 @@
                     <b>
                       <big >Q 2.</big>&nbsp;&nbsp;
                       <label>What is typically included in a class definition? </label>
-                      <br>
+                      <br>                      
+                      <a href="javascript::void(0);" id="question_two_solution"  style="text-decoration: underline;" >View Sol</a>
+                      <div id="question_two_solution_div" style="display: none;">
+                        <ul>
+                          <li>
+                            Data members (attributes) and member functions.
+                          </li>
+                        </ul>
+                        <strong>Ans.</strong><br>
+                         <label id="ansTwo">
+                          It begins with Class, followed by the class name, then usually a constructor, data members and member functions that delineates the class is included in .
+                        </label>
+                        <a href="javascript::void(0);" id="getAnsTwo">Copy</a>
+                        
+                      </div>
                     </b>
                   </p>
 
@@ -221,6 +275,118 @@
 
                         <button style="display: none;" class="btn btn-primary" type="reset">Reset</button>
                         <button type="submit" id="submitResponse2" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+              <div class="x_panel">
+                <div class="x_title">
+
+                  <p>
+                    <b>
+                      <big >Q 3.</big>&nbsp;&nbsp;
+                      <label>
+                     What is the difference between a data member and a local variable inside a member function?
+                      </label>
+                      <br>                      
+                      <a href="javascript::void(0);" id="question_three_solution" style="text-decoration: underline;" >View Sol</a>
+                      <div id="question_three_solution_div" style="display: none;">
+                        <ul>
+                          <li>
+                           Data members can be accessed from any member functions inside the class defintion. Local variables can only be accessed inside the member function that defines them.
+                          </li>
+                        </ul>
+                        <strong>Ans.</strong><br>
+                         <label id="ansThree">
+                          Data member are variables that represent an attribute in a class definition.  Local variables declared in a function body cannot be used outside of that function body.  When a function terminates 
+                        </label>
+                        <a href="javascript::void(0);" id="getAnsThree">Copy</a>
+                        
+                      </div>
+                    </b>
+                  </p>
+
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <br />
+                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return false;">
+
+
+
+                    <div class="form-group">
+                      <label for="responseAnswer" class="control-label col-md-3 col-sm-3 col-xs-12">Enter Response</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea id="responseAnswer3" class="form-control col-md-7 col-xs-12" type="text" name="responseAnswer3" rows="2" cols="200">
+                        </textarea>
+                      </div>
+                    </div>
+
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        <button style="display: none;" class="btn btn-primary" type="reset">Reset</button>
+                        <button type="submit" id="submitResponse3" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+              <div class="x_panel">
+                <div class="x_title">
+
+                  <p>
+                    <b>
+                      <big >Q 4.</big>&nbsp;&nbsp;
+                      <label>
+                      What is the difference between a constructor and a function?
+                    </label>
+                      <br>                      
+                      <a href="javascript::void(0);" id="question_four_solution" style="text-decoration: underline;">View Sol</a>
+                      <div id="question_four_solution_div" style="display: none;">
+                        <ul>
+                          <li>
+                            A constructor is called whenever an object is created, whereas a function needs to be called explicitely. Constructors do not have return type, but functions have to indicate a return type
+                          </li>
+                        </ul>
+                        <strong>Ans.</strong><br>
+                         <label id="ansFour">
+                          A constructor typically used to intialize data members and allocate resources, for instance memory, files, etc.  Also a constructor cannot return values.  Functions are operations that maybe 
+                        </label>
+                        <a href="javascript::void(0);" id="getAnsFour">Copy</a>
+                        
+                      </div>
+                    </b>
+                  </p>
+
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <br />
+                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return false;">
+
+
+
+                    <div class="form-group">
+                      <label for="responseAnswer" class="control-label col-md-3 col-sm-3 col-xs-12">Enter Response</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea id="responseAnswer4" class="form-control col-md-7 col-xs-12" type="text" name="responseAnswer2" rows="2" cols="200">
+                        </textarea>
+                      </div>
+                    </div>
+
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        <button style="display: none;" class="btn btn-primary" type="reset">Reset</button>
+                        <button type="submit" id="submitResponse4" class="btn btn-success">Submit</button>
                       </div>
                     </div>
 

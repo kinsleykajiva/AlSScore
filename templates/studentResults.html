@@ -113,7 +113,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Short Answer Response Expected.</h3>
+              <h3>Results Table .</h3>
             </div>
 
 
@@ -127,9 +127,12 @@
                   
                   
                     {% if result_set == 'empty' %}
-                    <h2>No results to show at this time <small>Latent Sentiment Analysis</small></h2>
+                    <h2 style="color: red;">No results to show at this time <small>Latent Sentiment Analysis</small></h2>
                     {% else %}
-                    <h2>Results of The response used <small>Latent Sentiment Analysis
+                    <h2>Results of The response used <strong>Latent Sentiment Analysis</strong></h2>
+                    <br>
+                    <label>Used several sub-smaller algoritms to come up with a score detemining</label>
+
                     {% endif %}
                    
                     <div class="clearfix"></div>

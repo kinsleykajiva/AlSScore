@@ -31,6 +31,9 @@ def getNowTime():
     "2017-10-05 05:12:57"
     return strftime("%H:%M:%S:%MS", time.localtime())
 
+def processMeaning(abr):
+    return 'Random Forest' if abr == 'rc' else 'Decision Tree' if abr == 'dc' else 'KNeighbors'
+
 
 def review_to_wordlist( review, remove_stopwords=False ):
     #review_text = re.sub("[^a-zA-Z]"," ", review)
@@ -160,10 +163,11 @@ def makep():
 
 
 
-
-s = "some additional information that we would need to replicate the experiment is how much vinegar should be placed in each identical container how or what tool"
-#tim = getNowDateTime().replace(":","_").replace("-","_").replace(" ","_")
-#print(tim)
+if __name__ == '__main__':    
+    s = "some additional information that we would need to replicate the experiment is how much vinegar should be placed in each identical container how or what tool"
+    #tim = getNowDateTime().replace(":","_").replace("-","_").replace(" ","_")
+    #print(tim)
+    print(processMeaning('dc'))
 
 
 

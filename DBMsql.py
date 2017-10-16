@@ -5,6 +5,7 @@ from passlib.hash import sha256_crypt
 # from  constantsSettongs import *
 import constantsSettongs as cons
 from flask.ext.bcrypt import Bcrypt
+import itertools 
 import plainUtil as utils
 
 
@@ -133,19 +134,23 @@ class ConnectClass(object):
 
 		try:
 			sql = self.cursor.execute( "SELECT * FROM " + cons.ANSWER_TABLE + " WHERE " + cons.COL_ANSWER_BY_USER + " = '" + student + "'" )
-			sql_ = self.cursor.fetchall()
+			sql_ = self.cursor.fetchall()			
 			row = ""
-			for qw in sql_:
-				row = " <tr>"
-				row += "<td> " + qw[2] + " </td>"
-				row += "<td> " + qw[3] + " </td>"
-				row += "<td> " + qw[5] + " </td>"
-				row += "<td> " + qw[8] + " </td>"
-				row += "<td> " + qw[9] + " </td>"
-				row += "<td> " + qw[6] + " </td>"
-				row += "<td> " + qw[7] + " </td>"
+			col_names = list(itertools.chain.from_iterable(sql_))
+			# for i , val in enumerate  (sql_):
+			# 	print(sql_[i])
+
+			for i , val in enumerate  (sql_):
+				row += " <tr>"
+				row += "<td> " + sql_[i][2] + " </td>"
+				row += "<td> " + sql_[i][3] + " </td>"
+				row += "<td> " + sql_[i][5] + " </td>"
+				row += "<td> " + sql_[i][8] + " </td>"
+				row += "<td> " + sql_[i][9] + " </td>"
+				row += "<td> " + sql_[i][6] + " </td>"
+				row += "<td> " + sql_[i][7] + " </td>"
 				row += " </tr>"
-			return row
+			return (row)
 		except Exception as e:
 			return "error" + str(e)
 
