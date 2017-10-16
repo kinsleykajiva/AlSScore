@@ -24,13 +24,48 @@
 
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
+function copyTextToClipboard(text , target) {
+  var textArea = document.createElement(target); 
+  textArea.value = text;
+  //document.body.appendChild(textArea);
+  textArea.select();
+  try {
+    var successful = document.execCommand('copy');
+    
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+  document.body.removeChild(textArea);
+}
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
+function showToast( heading  , message ){
+	$.toast({
+		text : message ,
+		heading: heading,
+		showHideTransition: 'fade',
+		allowToastClose: true,
+		hideAfter: 5000,
+		position: 'bottom-right',
+		icon: false,
+
+
+
+	});
+
+}
 
 /*-------------------------------------------------------------------------------------------------------------------------*/
 $("#getAnsFour").click(function(){
 	let  txtCopy = $("#ansFour").text();
-	alert("Copied " + txtCopy);
+	// alert("Copied " + txtCopy);
+});
+$('#getAnsFour').copiq({
+  parent: '#question_four_solution_div',
+  content: '#ansFour',
+        onSuccess: function($element, source, selection) {
+            showToast("dddd","dd");
+        }
 });
 /*-------------------------------------------------------------------------------------------------------------------------*/
 

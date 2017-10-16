@@ -8,6 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Answer Questions</title>
+  
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <symbol id="icon-copy" viewBox="0 0 32 32">
+        <path d="M20 8v-8h-14l-6 6v18h12v8h20v-24h-12zM6 2.828v3.172h-3.172l3.172-3.172zM2 22v-14h6v-6h10v6l-6 6v8h-10zM18 10.828v3.172h-3.172l3.172-3.172zM30 30h-16v-14h6v-6h10v20z"></path>
+    </symbol>
+  </svg> -->
 
   <!-- Bootstrap -->
   <link href="{{url_for('static',filename='css/bootstrap.css')}}" rel="stylesheet"> 
@@ -16,6 +22,7 @@
   <!-- Custom Theme Style -->
   <link href="{{url_for('static',filename='css/custom.css')}}" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap-dialog.min.css')}}">
+  <link href="{{url_for('static',filename='js/jquery.toast.min.css')}}" rel="stylesheet" type="text/css">
 </head>
 
 <body class="nav-md">
@@ -422,12 +429,19 @@
 <!-- jQuery Smart Wizard -->
 <script src="{{url_for('static',filename='js/jquery.smartWizard.js')}}"></script>
 <!-- Custom Theme Scripts -->
+<script src="{{url_for('static',filename='js/jquery.toast.js')}}"></script>
+
+<script src="{{url_for('static',filename='js/jquery.copiq.js')}}"></script>
+
+
 <script src="{{url_for('static',filename='js/custom.min.js')}}"></script>
 <script src="{{url_for('static',filename='js/customeKinsley.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap-dialog.min.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static',filename='js/loadingoverlay.min.js')}}"></script>
 
 <script type="text/javascript" src="{{url_for('static',filename='js/loadingoverlay_progress.min.js')}}"></script>
+
+
 
 
 
